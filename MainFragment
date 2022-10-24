@@ -1,0 +1,41 @@
+package com.example.namesave.ui.main;
+
+import androidx.lifecycle.ViewModelProvider
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.example.namesave.BR.myView
+import com.example.namesave.databinding.MainFragmentBinding
+
+class MainFragment : Fragment() {
+        companion object {
+                fun newInstance() = MainFragment()
+        }
+
+        private lateinit var view: MainViewModel
+        private var binding: MainFragmentBinding? = null
+        private val bind get() = binding!!
+        override fun onCreateView(
+                inflater: LayoutInflater, container: ViewGroup?,
+                savedInstanceState: Bundle?
+        ): View {
+                binding = MainFragmentBinding.inflate(inflater, container, false)
+                binding!!.lifecycleOwner = this
+                return bind.root
+        }
+
+        override fun onDestroyView() {
+                super.onDestroyView()
+                binding = null
+        }
+
+
+        override fun onActivityCreated(savedInstanceState: Bundle?) {
+                super.onActivityCreated(savedInstanceState)
+                view = ViewModelProvider(this).get(MainViewModel::class.java)
+                binding?.setVariable(myView, view)
+        }
+
+}
