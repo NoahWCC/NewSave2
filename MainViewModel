@@ -1,0 +1,24 @@
+package com.example.namesave.ui.main
+
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+
+class MainViewModel : ViewModel() {
+
+    private var nameList: ArrayList<String> = arrayListOf()
+var letters: MutableLiveData<String> = MutableLiveData()
+var displaying: MutableLiveData<String> = MutableLiveData()
+
+fun setName() {
+
+    letters.value?.let { nameList.add(it) }
+}
+
+fun returnNames() {
+    displaying.value = letters.value
+    for (i in nameList)
+
+
+        displaying.value += "\n$i"
+}
+}
